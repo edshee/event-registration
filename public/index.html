@@ -10,12 +10,37 @@
     <meta name="author" content="Ed Shee">
 
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
-    <h1>Test</h1>
     <div id="app">
-        <h2>{{ message }}</h2>
+        <header>
+            <div class="title">
+                <div class="container">
+                    {{title}}
+                </div>
+            </div>
+            <div class="description">
+                <div class="container">
+                    {{description}}
+                </div>
+            </div>
+            <nav class="">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li v-for="event in events"><a href="#">{{event.title}}</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12" v-for="instance in events[0].instances">
+                    <p>{{ instance.date }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 
 
