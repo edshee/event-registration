@@ -7,3 +7,26 @@
     background-color: blue;
     font-size: 2rem;
 }
+
+.card-block-margin {
+    margin-bottom: 1.4rem;
+}
+
+.block-padding {
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    padding-top: 0.7rem;
+}
+
+.card span {
+    color: yellow;
+}
+
+.register-button {
+    width: 100%;
+    border-radius: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}

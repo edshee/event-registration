@@ -53,6 +53,54 @@ var app = new Vue({
             ]
         }],
         title: 'IBM Cloud Workshops',
-        description: 'Learn about IBM Cloud from the experts...'
+        description: 'Learn about IBM Cloud from the experts...',
+        colors: [
+            '#34839D',
+            '#00B198',
+            '#3B4B54',
+            '#C6E6EC'
+        ]
+    },
+    computed: {
+        backgroundColor1: function() {
+            return {
+                'background-color': this.colors[0]
+            }
+        },
+        backgroundColor2: function() {
+            return {
+                'background-color': this.colors[1]
+            }
+        },
+        backgroundColor3: function() {
+            return {
+                'background-color': this.colors[2]
+            }
+        },
+        backgroundColor4: function() {
+            return {
+                'background-color': this.colors[3]
+            }
+        },
+        fontColor1: function() {
+            return {
+                'color': this.colors[0]
+            }
+        },
+        fontColor2: function() {
+            return {
+                'color': this.colors[1]
+            }
+        },
+        fontColor3: function() {
+            return {
+                'color': this.colors[2]
+            }
+        },
+        fontColor4: function() {
+            return {
+                'color': this.colors[3]
+            }
+        }
     }
 })
