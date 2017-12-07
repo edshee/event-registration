@@ -101,6 +101,11 @@ var app = new Vue({
             return {
                 'color': this.colors[3]
             }
+        },
+        borderColor3: function() {
+            return {
+                'border-color': this.colors[2]
+            }
         }
     }
 })

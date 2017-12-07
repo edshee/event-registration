@@ -1,11 +1,34 @@
 .title {
-    background-color: red;
-    font-size: 5rem;
+    font-size: 6rem;
+    font-weight: bold;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .description {
-    background-color: blue;
+    font-size: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: bold;
+}
+
+.event-title {
+    font-size: 4rem;
+    font-weight: bold;
+    padding-top: 2rem;
+}
+
+.event-description {
     font-size: 2rem;
+    padding-top: 1rem;
+    font-weight: bold;
+}
+
+.event-notes {
+    font-size: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    font-weight: bold;
 }
 
 .card-block-margin {
@@ -19,14 +42,47 @@
 }
 
 .card span {
-    color: yellow;
+    font-weight: bold;
+}
+
+.card {
+    padding-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 2rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+}
+
+.card-text {
+    font-size: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .register-button {
     width: 100%;
     border-radius: 0;
+    font-size: 2rem;
+}
+
+.footer-text p {
+    font-size: 1.5rem;
+}
+
+.footer-text {
+    padding-top: 1rem;
+}
+
+.footer-text p a {
+    font-weight: bold;
+    text-decoration: none;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    margin-top: 2rem;
 }

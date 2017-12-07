@@ -8,7 +8,7 @@
     <title>Event Registration</title>
     <meta name="description" content="Description">
     <meta name="author" content="Ed Shee">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -39,13 +39,13 @@
         <div class="container">
             <div class="row" v-for="event in events">
                 <div class="container">
-                    <div class="event-title">
+                    <div class="event-title" :style="fontColor3">
                         {{event.title}}
                     </div>
-                    <div class="event-description">
+                    <div class="event-description" :style="fontColor1">
                         {{event.description}}
                     </div>
-                    <div class="event-notes">
+                    <div class="event-notes" :style="fontColor2">
                         {{event.notes}}
                     </div>
                 </div>
@@ -56,18 +56,27 @@
                             <h5 class="card-text"><span :style="fontColor2">Time:</span> {{instance.time}}</h5>
                             <p class="card-text"><span :style="fontColor2">Location:</span> {{instance.location}}</p>
                         </div>
-                        <a href="#" class="btn btn-primary register-button" :style="backgroundColor2">Register</a>
+                        <a href="#" class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Register</a>
                     </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <div class="description" :style="[backgroundColor1, fontColor4]">
+                <div class="container text-center footer-text">
+                    <p>Made by the IBM Cloud team</p>
+                    <p>Powered by
+                        <a href="https://bluemix.net" :style="fontColor2">IBM Cloud</a></p>
+                </div>
+            </div>
+        </footer>
     </div>
 
 
-    <script src="scripts/jquery-3.1.1.min.js"></script>
-    <script src="scripts/vue.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src=" scripts/jquery-3.1.1.min.js "></script>
+    <script src="scripts/vue.js "></script>
+    <script src="scripts/bootstrap.min.js "></script>
+    <script src="scripts/main.js "></script>
 </body>
 
 </html>
