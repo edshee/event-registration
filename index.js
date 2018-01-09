@@ -89,7 +89,7 @@ app.post('/api/admin/details', function(req, res) {
             res.end();
         } else {
             console.log(err);
-            res.send(err);
+            res.send('error encounter. check logs for details');
         }
     });
 })
@@ -101,7 +101,57 @@ app.get('/api/admin/details', function(req, res) {
             res.send(data);
         } else {
             console.log(err);
-            res.send(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// event creation endpoint
+app.post('/api/events/create', function(req, res) {
+    events.insert(req.body, function(err, body) {
+        if (!err) {
+            console.log(body);
+            console.log('created new event ' + body.id);
+            res.send(body);
+        } else {
+            console.log(err);
+            res.send('error encounter. check logs for details');
+        }
+    })
+})
+
+// delete an event
+app.delete('/api/events/:id/:rev', function(req, res) {
+    events.destroy(req.params.id, req.params.rev, function(err, body) {
+        if (!err) {
+            console.log(body);
+            res.send('sucessfully deleted event');
+        } else {
+            console.log(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// get a specific event
+app.get('/api/events/:id', function(req, res) {
+    events.get(req.params.id, function(err, data) {
+        if (!err) {
+            res.send(data);
+        } else {
+            console.log(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// get all events
+app.get('/api/events/all', function(req, res) {
+    events.list(function(err, body) {
+        if (!err) {
+            body.rows.forEach(function(doc) {
+                console.log(doc);
+            });
         }
     });
 })
