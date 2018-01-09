@@ -86,7 +86,7 @@ app.post('/api/admin/details', function(req, res) {
     admin.insert(req.body, 'details', function(err, body) {
         if (!err) {
             console.log('updated admin details');
-            res.end();
+            res.send(body);
         } else {
             console.log(err);
             res.send('error encounter. check logs for details');
@@ -107,10 +107,9 @@ app.get('/api/admin/details', function(req, res) {
 })
 
 // event creation endpoint
-app.post('/api/events/create', function(req, res) {
+app.post('/api/event/create', function(req, res) {
     events.insert(req.body, function(err, body) {
         if (!err) {
-            console.log(body);
             console.log('created new event ' + body.id);
             res.send(body);
         } else {
@@ -121,7 +120,7 @@ app.post('/api/events/create', function(req, res) {
 })
 
 // delete an event
-app.delete('/api/events/:id/:rev', function(req, res) {
+app.delete('/api/event/:id/:rev', function(req, res) {
     events.destroy(req.params.id, req.params.rev, function(err, body) {
         if (!err) {
             console.log(body);
@@ -134,7 +133,7 @@ app.delete('/api/events/:id/:rev', function(req, res) {
 })
 
 // get a specific event
-app.get('/api/events/:id', function(req, res) {
+app.get('/api/event/:id', function(req, res) {
     events.get(req.params.id, function(err, data) {
         if (!err) {
             res.send(data);
@@ -148,10 +147,12 @@ app.get('/api/events/:id', function(req, res) {
 // get all events
 app.get('/api/events/all', function(req, res) {
     events.list(function(err, body) {
+        var arr = [];
         if (!err) {
             body.rows.forEach(function(doc) {
-                console.log(doc);
+                arr.push(doc);
             });
+            res.send(arr);
         }
     });
 })

@@ -17,7 +17,7 @@
     <div id="app" :style="[backgroundColor4, fontColor3]">
         <header>
             <div class="title" :style="[backgroundColor2, fontColor3]">
-                <div class="container">
+                <div class="container" @click="getAdminDetails">
                     {{title}}
                 </div>
             </div>
@@ -75,6 +75,7 @@
 
     <script src="scripts/jquery-3.1.1.min.js "></script>
     <script src="scripts/vue.js "></script>
+    <script src="scripts/vue-resource.js"></script>
     <script src="scripts/bootstrap.min.js "></script>
     <script src="scripts/main.js "></script>
 </body>
