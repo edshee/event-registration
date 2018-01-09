@@ -20,7 +20,7 @@ var cloudant = Cloudant({
     url: cloudant_url
 });
 
-// check if registrations database exits and create it if not
+// check if admin, registrations and events databases exist and create if not
 cloudant.db.get('registrations', function(err, body) {
     if (!err) {
         console.log(body);
@@ -35,8 +35,38 @@ cloudant.db.get('registrations', function(err, body) {
     }
 })
 
-// set registration database
+cloudant.db.get('events', function(err, body) {
+    if (!err) {
+        console.log(body);
+    } else {
+        cloudant.db.create('events', function(err, body) {
+            if (!err) {
+                console.log('created database for eventy stuff');
+            } else {
+                console.log(err);
+            }
+        });
+    }
+})
+
+cloudant.db.get('admin', function(err, body) {
+    if (!err) {
+        console.log(body);
+    } else {
+        cloudant.db.create('admin', function(err, body) {
+            if (!err) {
+                console.log('created database for admin stuff');
+            } else {
+                console.log(err);
+            }
+        });
+    }
+})
+
+// set database variables
 var registrations = cloudant.use('registrations');
+var events = cloudant.use('events');
+var admin = cloudant.use('admin');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -45,6 +75,39 @@ app.use(bodyParser.urlencoded({
 
 // parse application/json
 app.use(bodyParser.json())
+
+// forward to admin page
+app.get('/admin', function(req, res) {
+    res.redirect('/admin.html');
+})
+
+// post admin details (title, colors, description of site etc..)
+app.post('/api/admin/details', function(req, res) {
+    admin.insert(req.body, 'details', function(err, body) {
+        if (!err) {
+            console.log('updated admin details');
+            res.end();
+        } else {
+            console.log(err);
+            res.send(err);
+        }
+    });
+})
+
+// get admin details (title, colors, description of site etc...)
+app.get('/api/admin/details', function(req, res) {
+    admin.get('details', function(err, data) {
+        if (!err) {
+            res.send(data);
+        } else {
+            console.log(err);
+            res.send(err);
+        }
+    });
+})
+
+
+
 
 var port = process.env.PORT || 8080;
 

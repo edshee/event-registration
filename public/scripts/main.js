@@ -2,8 +2,8 @@ var app = new Vue({
     el: '#app',
     data: {
         events: [{
-            title: 'Bluemix Hands on Lab',
-            description: 'Learn the fundamentals of building, running and managing scalable cloud applications. Work with experts to accelerate your learning. Develop at speed using services and APIs. Help shape Bluemix with your feedback. Lunch and light refreshements are on us!',
+            title: 'IBM Cloud Hands on Lab',
+            description: 'Learn the fundamentals of building, running and managing scalable cloud applications. Work with experts to accelerate your learning. Develop at speed using services and APIs. Help shape IBM Cloud with your feedback. Lunch and light refreshements are on us!',
             notes: 'Please bring your laptop with you!',
             instances: [{
                     date: '1st November 2017',
