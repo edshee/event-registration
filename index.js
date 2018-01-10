@@ -122,7 +122,7 @@ app.get('/api/config', function(req, res) {
 })
 
 // event creation endpoint
-app.post('/api/event/create', function(req, res) {
+app.post('/api/event', function(req, res) {
     events.insert(req.body, function(err, body) {
         if (!err) {
             console.log('created new event ' + body.id);

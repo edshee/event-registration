@@ -41,6 +41,29 @@ var app = new Vue({
                 console.log(response);
             })
         },
+        saveEvent: function(index) {
+            this.$http.post('/api/event', this.events[index]).then(response => {
+                this.events[index]._rev = response.body.rev
+                this.events[index]._id = response.body.id
+            }, response => {
+                console.log(response);
+            })
+        },
+        createEvent: function() {
+            this.events.push({
+                title: '',
+                description: '',
+                notes: ''
+            })
+        },
+        deleteEvent: function(index) {
+            this.$http.delete('/api/event/' + this.events[index]._id + '/' + this.events[index]._rev).then(response => {
+                console.log(response);
+                this.events.splice(index, 1);
+            }, response => {
+                console.log(response);
+            })
+        },
         getInstance: function(id, cb) {
             this.$http.get('/api/instance/' + id).then(response => {
                 //put the instance in the right place
