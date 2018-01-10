@@ -30,6 +30,7 @@
         "body-parser": "^1.18.2",
         "cfenv": "^1.0.4",
         "cloudant": "^1.10.0",
-        "express": "^4.16.2"
+        "express": "^4.16.2",
+        "vue-color": "^2.4.3"
     }
 }

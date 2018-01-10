@@ -5,79 +5,68 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Event Registration</title>
+    <title>Event Admin</title>
     <meta name="description" content="Description">
     <meta name="author" content="Ed Shee">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/admin.css">
 </head>
 
 <body>
-    <div id="app" :style="[backgroundColor4, fontColor3]">
-        <header>
-            <div class="title" :style="[backgroundColor2, fontColor3]">
-                <div class="container" @click="getAdminDetails">
-                    {{title}}
-                </div>
+    <div id="app">
+        <header class="text-center">
+            <div class="row">
+                <div class="col-xs-6">Administration</div>
+                <div class="col-xs-6">Registrations</div>
             </div>
-            <div class="description" :style="[backgroundColor1, fontColor4]">
-                <div class="container">
-                    {{description}}
-                </div>
-            </div>
-            <!-- DO WE NEED A NAV?
-            <nav class="">
-                <div class="container">
-                    <ul class="nav navbar-nav">
-                        <li v-for="event in events"><a href="#">{{event.title}}</a></li>
-                    </ul>
-                </div>
-            </nav>
-        -->
         </header>
         <div class="container">
-            <div class="row" v-for="event in events">
-                <div class="container">
-                    <div class="event-title" :style="fontColor3">
-                        {{event.title}}
-                    </div>
-                    <div class="event-description" :style="fontColor1">
-                        {{event.description}}
-                    </div>
-                    <div class="event-notes" :style="fontColor2">
-                        {{event.notes}}
-                    </div>
+            <div class="container">
+                <div class="form-group">
+                    <label for="title">Page Title:</label>
+                    <input type="text" class="form-control" id="page-title" v-model="title">
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 card" v-for="instance in event.instances">
-                    <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
-                        <div class="block-padding">
-                            <h4 class="card-title"><span :style="fontColor2">Date:</span> {{instance.date}}</h4>
-                            <h5 class="card-text"><span :style="fontColor2">Time:</span> {{instance.time}}</h5>
-                            <p class="card-text"><span :style="fontColor2">Location:</span> {{instance.location}}</p>
+                <div class="form-group">
+                    <label for="description">Tagline:</label>
+                    <input type="text" class="form-control" id="page-tagline" v-model="description">
+                </div>
+                <div class="form-group">
+                    <label for="colors">Theme Colors</label>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[0]">
                         </div>
-                        <a href="#" class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Register</a>
+                        <div class="col-xs-3">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[1]">
+                        </div>
+                        <div class="col-xs-3">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[2]">
+                        </div>
+                        <div class="col-xs-3">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[3]">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <footer>
-            <div class="description" :style="[backgroundColor1, fontColor4]">
-                <div class="container text-center footer-text">
-                    <p>Made by the IBM Cloud team</p>
-                    <p>Powered by
-                        <a href="https://bluemix.net" :style="fontColor2">IBM Cloud</a></p>
+            <footer>
+                <div class="description ">
+                    <div class="container text-center footer-text ">
+                        <p>Made by the IBM Cloud team</p>
+                        <p>Powered by
+                            <a href="https://bluemix.net ">IBM Cloud</a></p>
+                    </div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
 
 
-    <script src="scripts/jquery-3.1.1.min.js "></script>
-    <script src="scripts/vue.js "></script>
-    <script src="scripts/vue-resource.js"></script>
-    <script src="scripts/bootstrap.min.js "></script>
-    <script src="scripts/admin.js "></script>
+        <script src="scripts/jquery-3.1.1.min.js "></script>
+        <script src="scripts/vue.js "></script>
+        <script src="scripts/vue-resource.js "></script>
+        <script src="scripts/bootstrap.min.js "></script>
+        <script src="scripts/jscolor.min.js "></script>
+        <script src="scripts/admin.js "></script>
 </body>
 
 </html>

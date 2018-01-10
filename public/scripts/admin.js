@@ -4,14 +4,14 @@ var app = new Vue({
         events: [],
         title: '',
         description: '',
-        colors: []
+        nonhexcolors: ['', '', '', '']
     },
     methods: {
         getAdminDetails: function() {
             this.$http.get('/api/admin/details').then(response => {
                 this.title = response.body.title;
                 this.description = response.body.description;
-                this.colors = response.body.colors;
+                this.nonhexcolors = response.body.colors;
             }, response => {
                 console.log(response);
             });
@@ -50,45 +50,11 @@ var app = new Vue({
                 'background-color': this.colors[0]
             }
         },
-        backgroundColor2: function() {
-            return {
-                'background-color': this.colors[1]
-            }
-        },
-        backgroundColor3: function() {
-            return {
-                'background-color': this.colors[2]
-            }
-        },
-        backgroundColor4: function() {
-            return {
-                'background-color': this.colors[3]
-            }
-        },
-        fontColor1: function() {
-            return {
-                'color': this.colors[0]
-            }
-        },
-        fontColor2: function() {
-            return {
-                'color': this.colors[1]
-            }
-        },
-        fontColor3: function() {
-            return {
-                'color': this.colors[2]
-            }
-        },
-        fontColor4: function() {
-            return {
-                'color': this.colors[3]
-            }
-        },
-        borderColor3: function() {
-            return {
-                'border-color': this.colors[2]
-            }
+        colors: function() {
+            var arr = this.nonhexcolors.map(function(e) {
+                return '#' + e
+            });
+            return arr
         }
     }
 })
