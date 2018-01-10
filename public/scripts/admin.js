@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
+        instances: [],
         events: [],
         config: {
             title: '',
@@ -70,6 +71,16 @@ var app = new Vue({
             }, response => {
                 console.log(response);
             })
+        },
+        createInstance: function(index) {
+            this.events[index].instances.push({
+                date: '',
+                time: '',
+                location: ''
+            })
+        },
+        deleteInstance: function(index) {
+
         }
     },
     mounted: function() {
@@ -82,6 +93,51 @@ var app = new Vue({
                 return '#' + e
             });
             return arr
+        },
+        backgroundColor1: function() {
+            return {
+                'background-color': this.colors[0]
+            }
+        },
+        backgroundColor2: function() {
+            return {
+                'background-color': this.colors[1]
+            }
+        },
+        backgroundColor3: function() {
+            return {
+                'background-color': this.colors[2]
+            }
+        },
+        backgroundColor4: function() {
+            return {
+                'background-color': this.colors[3]
+            }
+        },
+        fontColor1: function() {
+            return {
+                'color': this.colors[0]
+            }
+        },
+        fontColor2: function() {
+            return {
+                'color': this.colors[1]
+            }
+        },
+        fontColor3: function() {
+            return {
+                'color': this.colors[2]
+            }
+        },
+        fontColor4: function() {
+            return {
+                'color': this.colors[3]
+            }
+        },
+        borderColor3: function() {
+            return {
+                'border-color': this.colors[2]
+            }
         }
     }
 })

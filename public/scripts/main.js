@@ -1,17 +1,20 @@
 var app = new Vue({
     el: '#app',
     data: {
+        instances: [],
         events: [],
-        title: '',
-        description: '',
-        colors: []
+        config: {
+            title: '',
+            description: '',
+            colors: ['', '', '', '']
+        }
     },
     methods: {
-        getAdminDetails: function() {
-            this.$http.get('/api/admin/details').then(response => {
-                this.title = response.body.title;
-                this.description = response.body.description;
-                this.colors = response.body.colors;
+        getConfigDetails: function() {
+            this.$http.get('/api/config').then(response => {
+                if (response.body.title) {
+                    this.config = response.body;
+                }
             }, response => {
                 console.log(response);
             });
@@ -41,10 +44,16 @@ var app = new Vue({
         }
     },
     mounted: function() {
-        this.getAdminDetails()
+        this.getConfigDetails()
         this.loadEventsAndInstances()
     },
     computed: {
+        colors: function() {
+            var arr = this.config.colors.map(function(e) {
+                return '#' + e
+            });
+            return arr
+        },
         backgroundColor1: function() {
             return {
                 'background-color': this.colors[0]
