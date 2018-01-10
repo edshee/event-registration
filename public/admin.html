@@ -25,29 +25,30 @@
             <div class="container">
                 <div class="form-group">
                     <label for="title">Page Title:</label>
-                    <input type="text" class="form-control" id="page-title" v-model="title">
+                    <input type="text" class="form-control" id="page-title" v-model="config.title">
                 </div>
                 <div class="form-group">
                     <label for="description">Tagline:</label>
-                    <input type="text" class="form-control" id="page-tagline" v-model="description">
+                    <input type="text" class="form-control" id="page-tagline" v-model="config.description">
                 </div>
                 <div class="form-group">
                     <label for="colors">Theme Colors</label>
                     <div class="row">
                         <div class="col-xs-3">
-                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[0]">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="config.colors[0]">
                         </div>
                         <div class="col-xs-3">
-                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[1]">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="config.colors[1]">
                         </div>
                         <div class="col-xs-3">
-                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[2]">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="config.colors[2]">
                         </div>
                         <div class="col-xs-3">
-                            <input class="jscolor form-control" id="color0" v-model.lazy="nonhexcolors[3]">
+                            <input class="jscolor form-control" id="color0" v-model.lazy="config.colors[3]">
                         </div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-success" @click="saveConfigDetails">Save</button>
             </div>
             <footer>
                 <div class="description ">

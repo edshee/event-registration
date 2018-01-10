@@ -20,7 +20,7 @@ var cloudant = Cloudant({
     url: cloudant_url
 });
 
-// check if admin, registrations, events and instances databases exist and create if not
+// check if config, registrations, events and instances databases exist and create if not
 cloudant.db.get('instances', function(err, body) {
     if (!err) {
         console.log(body);
@@ -63,13 +63,13 @@ cloudant.db.get('events', function(err, body) {
     }
 })
 
-cloudant.db.get('admin', function(err, body) {
+cloudant.db.get('config', function(err, body) {
     if (!err) {
         console.log(body);
     } else {
-        cloudant.db.create('admin', function(err, body) {
+        cloudant.db.create('config', function(err, body) {
             if (!err) {
-                console.log('created database for admin stuff');
+                console.log('created database for config stuff');
             } else {
                 console.log(err);
             }
@@ -81,7 +81,7 @@ cloudant.db.get('admin', function(err, body) {
 var instances = cloudant.use('instances');
 var registrations = cloudant.use('registrations');
 var events = cloudant.use('events');
-var admin = cloudant.use('admin');
+var config = cloudant.use('config');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -96,11 +96,11 @@ app.get('/admin', function(req, res) {
     res.redirect('/admin.html');
 })
 
-// post admin details (title, colors, description of site etc..)
-app.post('/api/admin/details', function(req, res) {
-    admin.insert(req.body, 'details', function(err, body) {
+// post config details (title, colors, description of site etc..)
+app.post('/api/config', function(req, res) {
+    config.insert(req.body, 'details', function(err, body) {
         if (!err) {
-            console.log('updated admin details');
+            console.log('updated config details');
             res.send(body);
         } else {
             console.log(err);
@@ -109,14 +109,14 @@ app.post('/api/admin/details', function(req, res) {
     });
 })
 
-// get admin details (title, colors, description of site etc...)
-app.get('/api/admin/details', function(req, res) {
-    admin.get('details', function(err, data) {
+// get config details (title, colors, description of site etc...)
+app.get('/api/config', function(req, res) {
+    config.get('details', function(err, data) {
         if (!err) {
             res.send(data);
         } else {
             console.log(err);
-            res.send('got error, check logs');
+            res.send('noconfig');
         }
     });
 })

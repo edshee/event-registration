@@ -2,16 +2,25 @@ var app = new Vue({
     el: '#app',
     data: {
         events: [],
-        title: '',
-        description: '',
-        nonhexcolors: ['', '', '', '']
+        config: {
+            title: '',
+            description: '',
+            colors: ['', '', '', '']
+        }
     },
     methods: {
-        getAdminDetails: function() {
-            this.$http.get('/api/admin/details').then(response => {
-                this.title = response.body.title;
-                this.description = response.body.description;
-                this.nonhexcolors = response.body.colors;
+        getConfigDetails: function() {
+            this.$http.get('/api/config').then(response => {
+                if (response.body.title) {
+                    this.config = response.body;
+                }
+            }, response => {
+                console.log(response);
+            });
+        },
+        saveConfigDetails: function() {
+            this.$http.post('/api/config', this.config).then(response => {
+                this.config._rev = response.body.rev
             }, response => {
                 console.log(response);
             });
@@ -41,17 +50,12 @@ var app = new Vue({
         }
     },
     mounted: function() {
-        this.getAdminDetails()
+        this.getConfigDetails()
         this.loadEventsAndInstances()
     },
     computed: {
-        backgroundColor1: function() {
-            return {
-                'background-color': this.colors[0]
-            }
-        },
         colors: function() {
-            var arr = this.nonhexcolors.map(function(e) {
+            var arr = this.config.colors.map(function(e) {
                 return '#' + e
             });
             return arr
