@@ -20,7 +20,21 @@ var cloudant = Cloudant({
     url: cloudant_url
 });
 
-// check if admin, registrations and events databases exist and create if not
+// check if admin, registrations, events and instances databases exist and create if not
+cloudant.db.get('instances', function(err, body) {
+    if (!err) {
+        console.log(body);
+    } else {
+        cloudant.db.create('instances', function(err, body) {
+            if (!err) {
+                console.log('created database for event instances');
+            } else {
+                console.log(err);
+            }
+        });
+    }
+})
+
 cloudant.db.get('registrations', function(err, body) {
     if (!err) {
         console.log(body);
@@ -64,6 +78,7 @@ cloudant.db.get('admin', function(err, body) {
 })
 
 // set database variables
+var instances = cloudant.use('instances');
 var registrations = cloudant.use('registrations');
 var events = cloudant.use('events');
 var admin = cloudant.use('admin');
@@ -147,6 +162,57 @@ app.get('/api/event/:id', function(req, res) {
 // get all events
 app.get('/api/events/all', function(req, res) {
     events.list(function(err, body) {
+        var arr = [];
+        if (!err) {
+            body.rows.forEach(function(doc) {
+                arr.push(doc);
+            });
+            res.send(arr);
+        }
+    });
+})
+
+// instance creation endpoint
+app.post('/api/instance/create', function(req, res) {
+    instances.insert(req.body, function(err, body) {
+        if (!err) {
+            console.log('created new instance ' + body.id);
+            res.send(body);
+        } else {
+            console.log(err);
+            res.send('error encounter. check logs for details');
+        }
+    })
+})
+
+// delete an instance
+app.delete('/api/instance/:id/:rev', function(req, res) {
+    instances.destroy(req.params.id, req.params.rev, function(err, body) {
+        if (!err) {
+            console.log(body);
+            res.send('sucessfully deleted instance');
+        } else {
+            console.log(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// get a specific instance
+app.get('/api/instance/:id', function(req, res) {
+    instances.get(req.params.id, function(err, data) {
+        if (!err) {
+            res.send(data);
+        } else {
+            console.log(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// get all events
+app.get('/api/instances/all', function(req, res) {
+    instances.list(function(err, body) {
         var arr = [];
         if (!err) {
             body.rows.forEach(function(doc) {
