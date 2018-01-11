@@ -79,6 +79,11 @@
     text-decoration: none;
 }
 
+.form-control {
+    border-radius: 0;
+    font-size: 2rem;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
 }

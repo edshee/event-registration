@@ -60,8 +60,14 @@ var app = new Vue({
                 this.disableRegister = true;
             }
         },
-        register: function() {
-            console.log(this.regDetails)
+        register: function(index) {
+            if (this.regDetails.fullName == '' || this.regDetails.email == '' || this.regDetails.phone == '') {
+                alert('Name, email and phone number required')
+            } else {
+                alert('Registration Successful');
+                this.disableRegister = false;
+                Vue.set(this.registerToggle, index, !this.registerToggle[index])
+            }
         }
     },
     mounted: function() {
@@ -118,6 +124,11 @@ var app = new Vue({
         borderColor3: function() {
             return {
                 'border-color': this.colors[2]
+            }
+        },
+        borderColor2: function() {
+            return {
+                'border-color': this.colors[1]
             }
         }
     }
