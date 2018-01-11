@@ -64,7 +64,11 @@ var app = new Vue({
             if (this.regDetails.fullName == '' || this.regDetails.email == '' || this.regDetails.phone == '') {
                 alert('Name, email and phone number required')
             } else {
-                alert('Registration Successful');
+                this.$http.post('/api/registration', this.regDetails).then(response => {
+                    alert('Registration Successful');
+                }, response => {
+                    console.log(response);
+                })
                 this.disableRegister = false;
                 Vue.set(this.registerToggle, index, !this.registerToggle[index])
             }

@@ -162,6 +162,57 @@ app.get('/api/events/all', function(req, res) {
     });
 })
 
+// registration creation endpoint
+app.post('/api/registration', function(req, res) {
+    registrations.insert(req.body, function(err, body) {
+        if (!err) {
+            console.log('created new registration ' + body.id);
+            res.send(body);
+        } else {
+            console.log(err);
+            res.send('error encounter. check logs for details');
+        }
+    })
+})
+
+// delete a registration
+app.delete('/api/registration/:id/:rev', function(req, res) {
+    registrations.destroy(req.params.id, req.params.rev, function(err, body) {
+        if (!err) {
+            console.log(body);
+            res.send('sucessfully deleted registration');
+        } else {
+            console.log(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// get a specific registration
+app.get('/api/registration/:id', function(req, res) {
+    registrations.get(req.params.id, function(err, data) {
+        if (!err) {
+            res.send(data);
+        } else {
+            console.log(err);
+            res.send('got error, check logs');
+        }
+    });
+})
+
+// get all registrations
+app.get('/api/registrations/all', function(req, res) {
+    registrations.list(function(err, body) {
+        var arr = [];
+        if (!err) {
+            body.rows.forEach(function(doc) {
+                arr.push(doc);
+            });
+            res.send(arr);
+        }
+    });
+})
+
 var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
