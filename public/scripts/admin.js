@@ -26,7 +26,7 @@ var app = new Vue({
                 console.log(response);
             });
         },
-        loadEventsAndInstances: function() {
+        loadEvents: function() {
             this.$http.get('/api/events/all').then(response => {
                 response.data.forEach(function(el) {
                     app.getEvent(el.id)
@@ -54,7 +54,8 @@ var app = new Vue({
             this.events.push({
                 title: '',
                 description: '',
-                notes: ''
+                notes: '',
+                instances: []
             })
         },
         deleteEvent: function(index) {
@@ -65,27 +66,25 @@ var app = new Vue({
                 console.log(response);
             })
         },
-        getInstance: function(id, cb) {
-            this.$http.get('/api/instance/' + id).then(response => {
-                //put the instance in the right place
-            }, response => {
-                console.log(response);
-            })
-        },
         createInstance: function(index) {
             this.events[index].instances.push({
                 date: '',
                 time: '',
-                location: ''
+                location: '',
+                id: this.generateID()
             })
         },
-        deleteInstance: function(index) {
-
+        deleteInstance: function(index, idx) {
+            this.events[index].instances.splice(idx, 1);
+            this.saveEvent(index);
+        },
+        generateID: function() {
+            return '_' + Math.random().toString(36).substr(2, 9);
         }
     },
     mounted: function() {
         this.getConfigDetails()
-        this.loadEventsAndInstances()
+        this.loadEvents()
     },
     computed: {
         colors: function() {

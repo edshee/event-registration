@@ -23,3 +23,8 @@
 .nomargin {
     margin: 0;
 }
+
+.menu-a:hover {
+    font-weight: bolder;
+    -webkit-transition: font-weight 0.2s;
+}

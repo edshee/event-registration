@@ -1,13 +1,19 @@
 var app = new Vue({
     el: '#app',
     data: {
-        instances: [],
         events: [],
         config: {
             title: '',
             description: '',
             colors: ['', '', '', '']
-        }
+        },
+        registerToggle: [],
+        regDetails: {
+            fullName: '',
+            email: '',
+            phone: ''
+        },
+        disableRegister: false
     },
     methods: {
         getConfigDetails: function() {
@@ -31,6 +37,7 @@ var app = new Vue({
         getEvent: function(id) {
             this.$http.get('/api/event/' + id).then(response => {
                 this.events.push(response.data)
+                this.registerToggle.push(false)
             }, response => {
                 console.log(response);
             })
@@ -41,6 +48,20 @@ var app = new Vue({
             }, response => {
                 console.log(response);
             })
+        },
+        displayRegister: function(index, idx) {
+            if (this.disableRegister === false) {
+                Vue.set(this.registerToggle, index, !this.registerToggle[index])
+                this.regDetails.eventID = this.events[index]._id;
+                this.regDetails.instanceID = this.events[index].instances[idx].id;
+                this.regDetails.eventTitle = this.events[index].title;
+                this.regDetails.date = this.events[index].instances[idx].date;
+                this.regDetails.location = this.events[index].instances[idx].location;
+                this.disableRegister = true;
+            }
+        },
+        register: function() {
+            console.log(this.regDetails)
         }
     },
     mounted: function() {
