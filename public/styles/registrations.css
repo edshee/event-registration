@@ -1,0 +1,42 @@
+.top-nav {
+    font-size: 3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.padme {
+    padding: 1rem;
+}
+
+.bottompadding {
+    padding: 2rem;
+}
+
+.btn, .form-control {
+    border-radius: 0;
+}
+
+.description {
+    padding-top: 1.5rem;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.menu-a:hover {
+    font-weight: bolder;
+    -webkit-transition: font-weight 0.2s;
+}
+
+.row .nav-tabs li a {
+    border-radius: 0;
+}
+
+a:hover {
+    background-color: inherit !important;
+}
+
+.active {
+    background-color: inherit !important;
+}

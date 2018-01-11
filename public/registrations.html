@@ -10,7 +10,7 @@
     <meta name="author" content="Ed Shee">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/registrations.css">
 </head>
 
 <body>
@@ -30,50 +30,13 @@
                 <div v-for="(event, index) in events" class="row">
                     <h3>{{event.title}}</h3>
                     <ul class="nav nav-tabs nav-justified" :style="[fontColor3, backgroundColor4]">
-                        <li role="presentation" v-for="instance in event.instances"><a href="#">{{instance.date}}</a></li>
+                        <li role="presentation" v-for="(instance, idx) in event.instances"><a :style="fontColor3" @click="updateTabs(index, instance.id)">{{instance.date}}</a></li>
                     </ul>
-                    <div class="form-group">
-                        <label for="title">Event Title:</label>
-                        <input type="text" class="form-control" v-model="event.title" :style="[fontColor3, backgroundColor4]">
+                    <div v-for="(registration, regIndex) in displayArr[index]">
+                        {{registration}}
                     </div>
-                    <div class="form-group">
-                        <label for="comment">Event Description:</label>
-                        <textarea class="form-control" rows="5" v-model="event.description" :style="[fontColor1, backgroundColor4]"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Event Notes:</label>
-                        <input type="text" class="form-control" v-model="event.notes" :style="[fontColor2, backgroundColor4]">
-                    </div>
-                    <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
-                    <button type="button" class="btn" @click="deleteEvent(index)" :style="[backgroundColor1, fontColor4]">Delete</button>
-                    <div class="col-md-6">
-                        <h4>Instances</h4>
-                        <div v-for="(instance, idx) in event.instances" :style="[backgroundColor3, fontColor4]">
-                            <div class="padme">
-                                <div class="form-group">
-                                    <label for="title" :style="fontColor2">Date:</label>
-                                    <input type="text" class="form-control" v-model="instance.date" :style="[backgroundColor3, fontColor4]">
-                                </div>
-                                <div class="form-group">
-                                    <label for="comment" :style="fontColor2">Time:</label>
-                                    <input type="text" class="form-control" v-model="instance.time" :style="[backgroundColor3, fontColor4]"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description" :style="fontColor2">Location:</label>
-                                    <input type="text" class="form-control" v-model="instance.location" :style="[backgroundColor3, fontColor4]">
-                                </div>
-                                <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
-                                <button type="button" class="btn" @click="deleteInstance(index, idx)" :style="[backgroundColor1, fontColor4]">Delete</button>
-                            </div>
-                            <hr>
-                        </div>
-                        <button type="button" class="btn" @click="createInstance(index)" :style="[backgroundColor2, fontColor3]">Create Event Instance</button>
-                    </div>
-                    <div class="col-xs-12">
-                        <hr>
-                    </div>
+                    <hr>
                 </div>
-                <button type="button" class="btn" @click="createEvent" :style="[backgroundColor2, fontColor3]">Create New Event</button>
             </div>
         </div>
         <div class="bottompadding">
@@ -95,7 +58,7 @@
     <script src="scripts/vue.js "></script>
     <script src="scripts/vue-resource.js "></script>
     <script src="scripts/bootstrap.min.js "></script>
-    <script src="scripts/admin.js "></script>
+    <script src="scripts/registrations.js "></script>
 </body>
 
 </html>
