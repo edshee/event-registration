@@ -15,44 +15,49 @@
 
 <body>
     <div id="app" :style="[backgroundColor4, fontColor3]">
-        <header class="text-center">
-            <div class="row nomargin">
-                <a href="/admin">
-                    <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor2, fontColor3]">Administration</div>
-                </a>
-                <a href="/registrations">
-                    <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor1, fontColor4]">Registrations</div>
-                </a>
-            </div>
-        </header>
-        <div class="container">
+        <div class="filler">
+            <header class="text-center">
+                <div class="row nomargin">
+                    <a href="/admin">
+                        <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor2, fontColor3]">Administration</div>
+                    </a>
+                    <a href="/registrations">
+                        <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor1, fontColor4]">Registrations</div>
+                    </a>
+                </div>
+            </header>
             <div class="container">
-                <div v-for="(event, index) in events" class="row">
-                    <h3>{{event.title}}</h3>
-                    <ul class="nav nav-tabs nav-justified" :style="[fontColor3, backgroundColor4]">
-                        <li role="presentation" v-for="(instance, idx) in event.instances"><a :style="fontColor3" @click="updateTabs(index, instance.id)">{{instance.date}}</a></li>
-                    </ul>
-                    <div class="col-md-4 col-sm-6 col-xs-12 card" v-for="(registration, regIndex) in displayArr[index]">
-                        <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
-                            <div class="block-padding">
-                                <p class="card-title"><span :style="fontColor2">Date</span> <br>{{registration.fullName}}</p>
-                                <p class="card-text"><span :style="fontColor2">Time</span> <br>{{registration.email}}</p>
-                                <p class="card-text"><span :style="fontColor2">Location</span> <br>{{registration.phone}}</p>
+                <div class="container">
+                    <div v-for="(event, index) in events" class="row">
+                        <h3>{{event.title}}</h3>
+                        <ul class="nav nav-tabs nav-justified" :style="[fontColor3, backgroundColor4]">
+                            <li role="presentation" v-for="(instance, idx) in event.instances"><a href="#" :style="[fontColor3, isActive[index][idx]]" @click="updateTabs(index, instance.id, idx, $event)">{{instance.date}}</a></li>
+                        </ul>
+                        <div class="col-xs-12 text-center">
+                            <p class="card-title"><span :style="fontColor2">Registrations</span> <br>{{displayArr[index].length}}</p>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 card" v-for="(registration, regIndex) in displayArr[index]">
+                            <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
+                                <div class="block-padding">
+                                    <p class="card-title"><span :style="fontColor2">Name</span> <br>{{registration.fullName}}</p>
+                                    <p class="card-text"><span :style="fontColor2">Email</span> <br>{{registration.email}}</p>
+                                    <p class="card-text"><span :style="fontColor2">Phone</span> <br>{{registration.phone}}</p>
+                                </div>
+                                <a class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]" @click="deleteRegistration(registration._id, registration._rev)">Remove</a>
                             </div>
-                            <a class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Remove</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bottompadding">
+            <div class="bottompadding">
+            </div>
         </div>
         <footer>
             <div class="description" :style="[backgroundColor1, fontColor4]">
                 <div class="container text-center footer-text">
                     <p>Made by the IBM Cloud team</p>
                     <p>Powered by
-                        <a href="https://bluemix.net ">IBM Cloud</a></p>
+                        <a href="https://bluemix.net" :style="fontColor2">IBM Cloud</a></p>
                 </div>
             </div>
         </footer>

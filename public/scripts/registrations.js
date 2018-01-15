@@ -5,7 +5,12 @@ var app = new Vue({
         config: {
             title: '',
             description: '',
-            colors: ['', '', '', '']
+            colors: [
+                "38839C",
+                "1BB098",
+                "3C4B53",
+                "C7E6EC"
+            ]
         },
         registrations: [],
         eventTab: []
@@ -53,16 +58,18 @@ var app = new Vue({
                 console.log(response);
             })
         },
-        deleteRegistration: function(index) {
-            this.$http.delete('/api/registration/' + this.registrations[index]._id + '/' + this.registrations[index]._rev).then(response => {
+        deleteRegistration: function(id, rev) {
+            this.$http.delete('/api/registration/' + id + '/' + rev).then(response => {
                 console.log(response);
-                this.registrations.splice(index, 1);
+                this.registrations = [];
+                this.loadRegistrations();
             }, response => {
                 console.log(response);
             })
         },
-        updateTabs: function(index, id) {
+        updateTabs: function(index, id, idx, e) {
             Vue.set(this.eventTab, index, id);
+            e.preventDefault();
         }
     },
     mounted: function() {
@@ -71,6 +78,23 @@ var app = new Vue({
         this.loadRegistrations()
     },
     computed: {
+        isActive: function() {
+            var results = [];
+            for (i = 0; i < this.events.length; i++) {
+                results[i] = new Array(app.events[i].instances.length);
+                for (j = 0; j < app.events[i].instances.length; j++) {
+                    if (app.events[i].instances[j].id == app.eventTab[i]) {
+                        results[i][j] = {
+                            'background-color': this.colors[1],
+                            'border-color': this.colors[2]
+                        };
+                    } else {
+                        results[i][j] = '';
+                    }
+                }
+            }
+            return results;
+        },
         displayArr: function() {
             var results = [];
             this.eventTab.forEach(function(id) {

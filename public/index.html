@@ -15,68 +15,61 @@
 
 <body>
     <div id="app" :style="[backgroundColor4, fontColor3]">
-        <header>
-            <div class="title" :style="[backgroundColor2, fontColor3]">
-                <div class="container">
-                    {{config.title}}
-                </div>
-            </div>
-            <div class="description" :style="[backgroundColor1, fontColor4]">
-                <div class="container">
-                    {{config.description}}
-                </div>
-            </div>
-            <!-- DO WE NEED A NAV?
-            <nav class="">
-                <div class="container">
-                    <ul class="nav navbar-nav">
-                        <li v-for="event in events"><a href="#">{{event.title}}</a></li>
-                    </ul>
-                </div>
-            </nav>
-        -->
-        </header>
-        <div class="container">
-            <div class="row" v-for="(event, index) in events">
-                <div class="container">
-                    <div class="event-title" :style="fontColor3">
-                        {{event.title}}
-                    </div>
-                    <div class="event-description" :style="fontColor1">
-                        {{event.description}}
-                    </div>
-                    <div class="event-notes" :style="fontColor2">
-                        {{event.notes}}
+        <div class="filler">
+            <header>
+                <div class="title" :style="[backgroundColor2, fontColor3]">
+                    <div class="container">
+                        {{config.title}}
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 card" v-for="(instance, idx) in event.instances" v-if="!registerToggle[index] === true">
-                    <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
-                        <div class="block-padding">
-                            <p class="card-title"><span :style="fontColor2">Date</span> <br>{{instance.date}}</p>
-                            <p class="card-text"><span :style="fontColor2">Time</span> <br>{{instance.time}}</p>
-                            <p class="card-text"><span :style="fontColor2">Location</span> <br>{{instance.location}}</p>
+                <div class="description" :style="[backgroundColor1, fontColor4]">
+                    <div class="container">
+                        {{config.description}}
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div class="row" v-for="(event, index) in events">
+                    <div class="container">
+                        <div class="event-title" :style="fontColor3">
+                            {{event.title}}
                         </div>
-                        <a v-on:click="displayRegister(index, idx)" class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Register</a>
+                        <div class="event-description" :style="fontColor1">
+                            {{event.description}}
+                        </div>
+                        <div class="event-notes" :style="fontColor2">
+                            {{event.notes}}
+                        </div>
                     </div>
-                </div>
-                <div v-if="registerToggle[index]">
-                    <div class="col-xs-12 card">
+                    <div class="col-md-4 col-sm-6 col-xs-12 card" v-for="(instance, idx) in event.instances" v-if="!registerToggle[index] === true">
                         <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
                             <div class="block-padding">
-                                <p class="card-title"><span :style="fontColor2">Title</span> <br>{{regDetails.eventTitle}}</p>
-                                <p class="card-text"><span :style="fontColor2">Date</span> <br>{{regDetails.date}}</p>
-                                <p class="card-text"><span :style="fontColor2">Location</span> <br>{{regDetails.location}}</p>
-                                <p class="card-text"><span :style="fontColor2">Full Name</span>
-                                    <input type="text" class="form-control" v-model="regDetails.fullName" :style="borderColor2">
-                                </p>
-                                <p class="card-text"><span :style="fontColor2">Email</span>
-                                    <input type="email" class="form-control" v-model="regDetails.email" :style="borderColor2">
-                                </p>
-                                <p class="card-text"><span :style="fontColor2">Phone</span>
-                                    <input type="text" class="form-control" v-model="regDetails.phone" :style="borderColor2">
-                                </p>
+                                <p class="card-title"><span :style="fontColor2">Date</span> <br>{{instance.date}}</p>
+                                <p class="card-text"><span :style="fontColor2">Time</span> <br>{{instance.time}}</p>
+                                <p class="card-text"><span :style="fontColor2">Location</span> <br>{{instance.location}}</p>
                             </div>
-                            <a v-on:click="register(index)" class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Submit Registration</a>
+                            <a v-on:click="displayRegister(index, idx)" class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Register</a>
+                        </div>
+                    </div>
+                    <div v-if="registerToggle[index]">
+                        <div class="col-xs-12 card">
+                            <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
+                                <div class="block-padding">
+                                    <p class="card-title"><span :style="fontColor2">Title</span> <br>{{regDetails.eventTitle}}</p>
+                                    <p class="card-text"><span :style="fontColor2">Date</span> <br>{{regDetails.date}}</p>
+                                    <p class="card-text"><span :style="fontColor2">Location</span> <br>{{regDetails.location}}</p>
+                                    <p class="card-text"><span :style="fontColor2">Full Name</span>
+                                        <input type="text" class="form-control" v-model="regDetails.fullName" :style="[backgroundColor4, borderColor2]">
+                                    </p>
+                                    <p class="card-text"><span :style="fontColor2">Email</span>
+                                        <input type="email" class="form-control" v-model="regDetails.email" :style="[backgroundColor4, borderColor2]">
+                                    </p>
+                                    <p class="card-text"><span :style="fontColor2">Phone</span>
+                                        <input type="text" class="form-control" v-model="regDetails.phone" :style="[backgroundColor4, borderColor2]">
+                                    </p>
+                                </div>
+                                <a v-on:click="register(index)" class="btn btn-primary register-button" :style="[backgroundColor2, borderColor3]">Submit Registration</a>
+                            </div>
                         </div>
                     </div>
                 </div>

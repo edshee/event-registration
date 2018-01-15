@@ -5,7 +5,12 @@ var app = new Vue({
         config: {
             title: '',
             description: '',
-            colors: ['', '', '', '']
+            colors: [
+                "38839C",
+                "1BB098",
+                "3C4B53",
+                "C7E6EC"
+            ]
         },
         registerToggle: [],
         regDetails: {

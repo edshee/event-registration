@@ -66,19 +66,6 @@
     font-size: 2rem;
 }
 
-.footer-text p {
-    font-size: 1.5rem;
-}
-
-.footer-text {
-    padding-top: 1rem;
-}
-
-.footer-text p a {
-    font-weight: bold;
-    text-decoration: none;
-}
-
 .form-control {
     border-radius: 0;
     font-size: 2rem;
@@ -88,6 +75,21 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-footer {
-    margin-top: 2rem;
+.footer-text {
+    height: 7.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.footer-text p {
+    font-size: 1.5rem;
+}
+
+.footer-text p a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.filler {
+    min-height: calc(100vh - 9.5rem);
 }

@@ -15,107 +15,109 @@
 
 <body>
     <div id="app" :style="[backgroundColor4, fontColor3]">
-        <header class="text-center">
-            <div class="row nomargin">
-                <a href="/admin">
-                    <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor2, fontColor3]">Administration</div>
-                </a>
-                <a href="/registrations">
-                    <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor1, fontColor4]">Registrations</div>
-                </a>
-            </div>
-        </header>
-        <div class="container">
+        <div class="filler">
+            <header class="text-center">
+                <div class="row nomargin">
+                    <a href="/admin">
+                        <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor2, fontColor3]">Administration</div>
+                    </a>
+                    <a href="/registrations">
+                        <div class="col-xs-6 top-nav menu-a" :style="[backgroundColor1, fontColor4]">Registrations</div>
+                    </a>
+                </div>
+            </header>
             <div class="container">
-                <h3>Site Configuration</h3>
-                <hr>
-                <div class="form-group">
-                    <label for="title">Page Title:</label>
-                    <input type="text" class="form-control" :style="[backgroundColor2, fontColor3]" v-model="config.title">
-                </div>
-                <div class="form-group">
-                    <label for="description">Tagline:</label>
-                    <input type="text" class="form-control" :style="[backgroundColor1, fontColor4]" v-model="config.description">
-                </div>
-                <div class="form-group">
-                    <label for="colors">Theme Colors</label>
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <input class="jscolor form-control" :style="backgroundColor1" v-model.lazy="config.colors[0]">
-                        </div>
-                        <div class="col-xs-3">
-                            <input class="jscolor form-control" :style="backgroundColor2" v-model.lazy="config.colors[1]">
-                        </div>
-                        <div class="col-xs-3">
-                            <input class="jscolor form-control" :style="backgroundColor3" v-model.lazy="config.colors[2]">
-                        </div>
-                        <div class="col-xs-3">
-                            <input class="jscolor form-control" :style="backgroundColor4" v-model.lazy="config.colors[3]">
-                        </div>
+                <div class="container">
+                    <h3>Site Configuration</h3>
+                    <hr :style="borderColor3">
+                    <div class="form-group">
+                        <label for="title">Page Title:</label>
+                        <input type="text" class="form-control" :style="[backgroundColor2, fontColor3, borderColor3]" v-model="config.title">
                     </div>
-                </div>
-                <button type="button" class="btn" @click="saveConfigDetails" :style="[backgroundColor2, fontColor3]">Save</button>
-                <hr>
-            </div>
-            <div class="container">
-                <h3>Events</h3>
-                <hr>
-                <div v-for="(event, index) in events" class="row">
-                    <div class="col-md-6">
-                        <h4>Event</h4>
-                        <div class="form-group">
-                            <label for="title">Event Title:</label>
-                            <input type="text" class="form-control" v-model="event.title" :style="[fontColor3, backgroundColor4]">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Event Description:</label>
-                            <textarea class="form-control" rows="5" v-model="event.description" :style="[fontColor1, backgroundColor4]"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Event Notes:</label>
-                            <input type="text" class="form-control" v-model="event.notes" :style="[fontColor2, backgroundColor4]">
-                        </div>
-                        <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
-                        <button type="button" class="btn" @click="deleteEvent(index)" :style="[backgroundColor1, fontColor4]">Delete</button>
+                    <div class="form-group">
+                        <label for="description">Tagline:</label>
+                        <input type="text" class="form-control" :style="[backgroundColor1, fontColor4, borderColor3]" v-model="config.description">
                     </div>
-                    <div class="col-md-6">
-                        <h4>Instances</h4>
-                        <div v-for="(instance, idx) in event.instances" :style="[backgroundColor3, fontColor4]">
-                            <div class="padme">
-                                <div class="form-group">
-                                    <label for="title" :style="fontColor2">Date:</label>
-                                    <input type="text" class="form-control" v-model="instance.date" :style="[backgroundColor3, fontColor4]">
-                                </div>
-                                <div class="form-group">
-                                    <label for="comment" :style="fontColor2">Time:</label>
-                                    <input type="text" class="form-control" v-model="instance.time" :style="[backgroundColor3, fontColor4]"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description" :style="fontColor2">Location:</label>
-                                    <input type="text" class="form-control" v-model="instance.location" :style="[backgroundColor3, fontColor4]">
-                                </div>
-                                <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
-                                <button type="button" class="btn" @click="deleteInstance(index, idx)" :style="[backgroundColor1, fontColor4]">Delete</button>
+                    <div class="form-group">
+                        <label for="colors">Theme Colors</label>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <input class="jscolor form-control" :style="[backgroundColor1, borderColor3]" v-model.lazy="config.colors[0]">
                             </div>
-                            <hr>
+                            <div class="col-xs-3">
+                                <input class="jscolor form-control" :style="[backgroundColor2, borderColor3]" v-model.lazy="config.colors[1]">
+                            </div>
+                            <div class="col-xs-3">
+                                <input class="jscolor form-control" :style="[backgroundColor3, borderColor3]" v-model.lazy="config.colors[2]">
+                            </div>
+                            <div class="col-xs-3">
+                                <input class="jscolor form-control" :style="[backgroundColor4, borderColor3]" v-model.lazy="config.colors[3]">
+                            </div>
                         </div>
-                        <button type="button" class="btn" @click="createInstance(index)" :style="[backgroundColor2, fontColor3]">Create Event Instance</button>
                     </div>
-                    <div class="col-xs-12">
-                        <hr>
-                    </div>
+                    <button type="button" class="btn" @click="saveConfigDetails" :style="[backgroundColor2, fontColor3]">Save</button>
+                    <hr :style="borderColor3">
                 </div>
-                <button type="button" class="btn" @click="createEvent" :style="[backgroundColor2, fontColor3]">Create New Event</button>
+                <div class="container">
+                    <h3>Events</h3>
+                    <hr :style="borderColor3">
+                    <div v-for="(event, index) in events" class="row">
+                        <div class="col-md-6">
+                            <h4>Event</h4>
+                            <div class="form-group">
+                                <label for="title">Event Title:</label>
+                                <input type="text" class="form-control" v-model="event.title" :style="[fontColor3, backgroundColor4, borderColor3]">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Event Description:</label>
+                                <textarea class="form-control" rows="5" v-model="event.description" :style="[fontColor1, backgroundColor4, borderColor3]"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Event Notes:</label>
+                                <input type="text" class="form-control" v-model="event.notes" :style="[fontColor2, backgroundColor4, borderColor3]">
+                            </div>
+                            <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
+                            <button type="button" class="btn" @click="deleteEvent(index)" :style="[backgroundColor1, fontColor4]">Delete</button>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Instances</h4>
+                            <div v-for="(instance, idx) in event.instances" :style="[backgroundColor3, fontColor4]">
+                                <div class="padme">
+                                    <div class="form-group">
+                                        <label for="title" :style="fontColor2">Date:</label>
+                                        <input type="text" class="form-control" v-model="instance.date" :style="[backgroundColor3, fontColor4]">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" :style="fontColor2">Time:</label>
+                                        <input type="text" class="form-control" v-model="instance.time" :style="[backgroundColor3, fontColor4]"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" :style="fontColor2">Location:</label>
+                                        <input type="text" class="form-control" v-model="instance.location" :style="[backgroundColor3, fontColor4]">
+                                    </div>
+                                    <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
+                                    <button type="button" class="btn" @click="deleteInstance(index, idx)" :style="[backgroundColor1, fontColor4]">Delete</button>
+                                </div>
+                                <hr :style="borderColor3">
+                            </div>
+                            <button type="button" class="btn" @click="createInstance(index)" :style="[backgroundColor2, fontColor3]">Create Event Instance</button>
+                        </div>
+                        <div class="col-xs-12">
+                            <hr :style="borderColor3">
+                        </div>
+                    </div>
+                    <button type="button" class="btn" @click="createEvent" :style="[backgroundColor2, fontColor3]">Create New Event</button>
+                </div>
             </div>
-        </div>
-        <div class="bottompadding">
+            <div class="bottompadding">
+            </div>
         </div>
         <footer>
             <div class="description" :style="[backgroundColor1, fontColor4]">
                 <div class="container text-center footer-text">
                     <p>Made by the IBM Cloud team</p>
                     <p>Powered by
-                        <a href="https://bluemix.net ">IBM Cloud</a></p>
+                        <a href="https://bluemix.net" :style="fontColor2">IBM Cloud</a></p>
                 </div>
             </div>
         </footer>
