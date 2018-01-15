@@ -1,0 +1,13 @@
+---
+declared-services:
+  cloudant-event-db:
+    label: cloudantNoSQLDB
+    plan: Lite
+applications:
+- name: event-registration
+  command: npm start
+  random-route: true
+  path: .
+  memory: 256M
+  services:
+  - cloudant-event-db
