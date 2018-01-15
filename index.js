@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 var Cloudant = require('cloudant');
 
 // manually add cloudant url here if not binding as a service
-var cloudant_url = "https://55f26bd0-a38e-46c0-8586-266baed02037-bluemix:08efe155240fadd219ef51ae5254ec1020913bac456cf887bfebc49634e297e7@55f26bd0-a38e-46c0-8586-266baed02037-bluemix.cloudant.com";
+var cloudant_url = "https://f327407a-196d-4d19-84b3-72c1a3ce91bd-bluemix:36a8b4a546b6bef9fe3970c3f93905ed38718c2f74d893e18f23435fd88b9bde@f327407a-196d-4d19-84b3-72c1a3ce91bd-bluemix.cloudant.com";
 
 // get cloudant env variables
 if (process.env.VCAP_SERVICES) {
