@@ -32,7 +32,8 @@ var app = new Vue({
             ["F4FC00", "FF4040", "FFFFFF", "4F4242"],
             ["FFFF6E", "FFA6A6", "FFFFFF", "4C424F"],
             ["FFEB87", "767FC2", "FDFFE8", "4C424F"]
-        ]
+        ],
+        saveText: "Save"
     },
     methods: {
         getConfigDetails: function() {
@@ -45,9 +46,22 @@ var app = new Vue({
             });
         },
         saveConfigDetails: function() {
+            this.saveText = "Saving...";
             this.$http.post('/api/config', this.config).then(response => {
                 this.config._rev = response.body.rev
+                setTimeout(function() {
+                    this.saveText = "Saved Successfully"
+                }.bind(this), 500)
+                setTimeout(function() {
+                    this.saveText = "Save"
+                }.bind(this), 2000)
             }, response => {
+                setTimeout(function() {
+                    this.saveText = "Error"
+                }.bind(this), 500)
+                setTimeout(function() {
+                    this.saveText = "Save"
+                }.bind(this), 2000)
                 console.log(response);
             });
         },
@@ -68,11 +82,24 @@ var app = new Vue({
             })
         },
         saveEvent: function(index) {
+            this.saveText = "Saving..."
             this.$http.post('/api/event', this.events[index]).then(response => {
                 this.events[index]._rev = response.body.rev
                 this.events[index]._id = response.body.id
+                setTimeout(function() {
+                    this.saveText = "Saved Successfully"
+                }.bind(this), 500)
+                setTimeout(function() {
+                    this.saveText = "Save"
+                }.bind(this), 2000)
             }, response => {
                 console.log(response);
+                setTimeout(function() {
+                    this.saveText = "Error"
+                }.bind(this), 500)
+                setTimeout(function() {
+                    this.saveText = "Save"
+                }.bind(this), 2000)
             })
         },
         createEvent: function() {

@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn" @click="saveConfigDetails" :style="[backgroundColor2, fontColor3]">Save</button>
+                    <button type="button" class="btn" @click="saveConfigDetails" :style="[backgroundColor2, fontColor3]">{{saveText}}</button>
                     <button type="button" class="btn" @click="randomColors" :style="[backgroundColor1, fontColor4]">Randomize Colors</button>
                     <hr :style="borderColor3">
                 </div>
@@ -77,7 +77,7 @@
                                 <label for="description">Event Notes:</label>
                                 <input type="text" class="form-control" v-model="event.notes" :style="[fontColor2, backgroundColor4, borderColor3]">
                             </div>
-                            <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
+                            <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">{{saveText}}</button>
                             <button type="button" class="btn" @click="deleteEvent(index)" :style="[backgroundColor1, fontColor4]">Delete</button>
                         </div>
                         <div class="col-md-6">
@@ -86,7 +86,7 @@
                                 <div class="padme">
                                     <div class="form-group">
                                         <label for="title" :style="fontColor2">Date:</label>
-                                        <input type="text" class="form-control" v-model="instance.date" :style="[backgroundColor3, fontColor4]">
+                                        <input type="date" class="form-control" v-model="instance.date" :style="[backgroundColor3, fontColor4]">
                                     </div>
                                     <div class="form-group">
                                         <label for="comment" :style="fontColor2">Time:</label>
@@ -96,7 +96,7 @@
                                         <label for="description" :style="fontColor2">Location:</label>
                                         <input type="text" class="form-control" v-model="instance.location" :style="[backgroundColor3, fontColor4]">
                                     </div>
-                                    <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">Save</button>
+                                    <button type="button" class="btn" @click="saveEvent(index)" :style="[backgroundColor2, fontColor3]">{{saveText}}</button>
                                     <button type="button" class="btn" @click="deleteInstance(index, idx)" :style="[backgroundColor1, fontColor4]">Delete</button>
                                 </div>
                                 <hr :style="borderColor3">

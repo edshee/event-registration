@@ -16,6 +16,7 @@ The quickest and easiest way is to click the button below to deploy to IBM Cloud
 2. `cd event-registration/`
 3. `cf create-service cloudantNoSQLDB Lite cloudant-event-db`
 4. `cf push`
+
 This will create an app with a random route. If you want to specify the route use `cf push -n <unique hostname>`.
 
 ## Supported Regions
@@ -32,7 +33,7 @@ If you want to set up the (optional) email notification you will need a [SendGri
 
 ## Usage
 
-Before people can register for your events you need to configure the app. To do this:
+Before people can register for your events you need to configure your app. To do this:
 1. Go to `<your-app-url>/admin`
 2. Give your application a name and (optional) tagline
 3. Create at least one event
