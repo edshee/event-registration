@@ -12,7 +12,27 @@ var app = new Vue({
                 "3C4B53",
                 "C7E6EC"
             ]
-        }
+        },
+        colorThemes: [
+            ["F8BDFF", "5DA9E8", "F0F9FF", "51528C"],
+            ["84B8D6", "E68585", "FFFFFF", "3A3B4A"],
+            ["38839C", "1BB098", "C7E6EC", "3C4B53"],
+            ["38839C", "A8C278", "535353", "FFFFFF"],
+            ["8C3E9C", "F0A3C6", "535353", "FFFFFF"],
+            ["0D7CBD", "FF3877", "403E4D", "FFFFFF"],
+            ["5F83B3", "9DA2A8", "01134D", "FFF3D4"],
+            ["737373", "872D43", "FF6A3D", "FFF3D4"],
+            ["7E8B9E", "B03A6B", "FF6363", "FFFFFF"],
+            ["616161", "ADADAD", "454545", "FFFFFF"],
+            ["739470", "3F5742", "6BBA68", "FFFFFF"],
+            ["D6E89B", "A9C2BC", "FFFFFF", "314D46"],
+            ["ACC4E8", "74A9C2", "FFFFFF", "3D3C4D"],
+            ["B8CFFC", "F587FF", "FFFFFF", "3B3B3B"],
+            ["FCCAD0", "FF4040", "FFFFFF", "4F4242"],
+            ["F4FC00", "FF4040", "FFFFFF", "4F4242"],
+            ["FFFF6E", "FFA6A6", "FFFFFF", "4C424F"],
+            ["FFEB87", "767FC2", "FDFFE8", "4C424F"]
+        ]
     },
     methods: {
         getConfigDetails: function() {
@@ -85,6 +105,10 @@ var app = new Vue({
         },
         generateID: function() {
             return '_' + Math.random().toString(36).substr(2, 9);
+        },
+        randomColors: function() {
+            var rand = Math.floor(Math.random() * Math.floor(this.colorThemes.length))
+            this.config.colors = this.colorThemes[rand];
         }
     },
     mounted: function() {
