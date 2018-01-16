@@ -26,13 +26,13 @@
 }
 
 .footer-text {
-    height: 7.5rem;
+    height: 6.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
 .footer-text p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .footer-text p a {
@@ -41,7 +41,7 @@
 }
 
 .filler {
-    min-height: calc(100vh - 7.5rem);
+    min-height: calc(100vh - 6.5rem);
 }
 
 body {

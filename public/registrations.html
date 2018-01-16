@@ -30,8 +30,9 @@
                 <div class="container">
                     <div v-for="(event, index) in events" class="row">
                         <h3>{{event.title}}</h3>
-                        <ul class="nav nav-tabs nav-justified" :style="[fontColor3, backgroundColor4]">
-                            <li role="presentation" v-for="(instance, idx) in event.instances"><a href="#" :style="[fontColor3, isActive[index][idx]]" @click="updateTabs(index, instance.id, idx, $event)">{{instance.date}}</a></li>
+                        <hr :style="borderColor3">
+                        <ul class="nav nav-tabs nav-justified" :style="[fontColor3, backgroundColor4, borderColor3]">
+                            <li role="presentation" v-for="(instance, idx) in event.instances" :style="[fontColor3, backgroundColor4, borderColor3]"><a href="#" :style="[fontColor3, isActive[index][idx], borderColor3]" @click="updateTabs(index, instance.id, idx, $event)">{{instance.date}}</a></li>
                         </ul>
                         <div class="col-xs-12 text-center">
                             <p class="card-title"><span :style="fontColor2">Registrations</span> <br>{{displayArr[index].length}}</p>

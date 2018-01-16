@@ -31,7 +31,7 @@
 
 .row .nav-tabs li a {
     border-radius: 0;
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 .nav li a:hover {
@@ -57,20 +57,20 @@
 }
 
 .card-title {
-    font-size: 2rem;
-    padding-bottom: 1.5rem;
+    font-size: 1.6rem;
+    padding-bottom: 1.2rem;
     padding-top: 1rem;
 }
 
 .card-text {
-    font-size: 2rem;
-    padding-bottom: 1.5rem;
+    font-size: 1.6rem;
+    padding-bottom: 1.2rem;
 }
 
 .register-button {
     width: 100%;
     border-radius: 0;
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 .activeTab {
@@ -78,13 +78,13 @@
 }
 
 .footer-text {
-    height: 7.5rem;
+    height: 6.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
 .footer-text p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .footer-text p a {
@@ -93,7 +93,7 @@
 }
 
 .filler {
-    min-height: calc(100vh - 7.5rem);
+    min-height: calc(100vh - 6.5rem);
 }
 
 body {
