@@ -11,6 +11,7 @@ The quickest and easiest way is to click the button below to deploy to IBM Cloud
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/edshee/event-registration.git&branch=master)
 
 **Manual deployment (on Cloud Foundry)**
+
     git clone https://github.com/edshee/event-registration.git
     cd event-registration/
     cf create-service cloudantNoSQLDB Lite cloudant-event-db
