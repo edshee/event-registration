@@ -3,6 +3,24 @@ var app = express();
 var cfenv = require("cfenv");
 var bodyParser = require('body-parser')
 var Cloudant = require('cloudant');
+var session = require('client-sessions');
+var admin_password = 'events';
+
+// session settings
+app.use(session({
+    cookieName: 'session',
+    secret: 'whowouldthinkthatwasasesoin',
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
+    httpOnly: true,
+    secure: true,
+    ephemeral: true
+}));
+
+// set user defined password if it exists
+if (process.env.admin_password) {
+    admin_password = process.env.admin_password
+};
 
 // manually add cloudant url here if not binding as a service
 var cloudant_url = "https://f327407a-196d-4d19-84b3-72c1a3ce91bd-bluemix:36a8b4a546b6bef9fe3970c3f93905ed38718c2f74d893e18f23435fd88b9bde@f327407a-196d-4d19-84b3-72c1a3ce91bd-bluemix.cloudant.com";
@@ -21,47 +39,42 @@ var cloudant = Cloudant({
 });
 
 // check if config, registrations and events databases exist and create if not
-cloudant.db.get('registrations', function(err, body) {
-    if (!err) {
-        console.log(body);
-    } else {
-        cloudant.db.create('registrations', function(err, body) {
-            if (!err) {
-                console.log('created database for event registrations');
-            } else {
-                console.log(err);
-            }
-        });
-    }
-})
+checkdb('events');
+checkdb('registrations');
+checkdb('config');
 
-cloudant.db.get('events', function(err, body) {
-    if (!err) {
-        console.log(body);
-    } else {
-        cloudant.db.create('events', function(err, body) {
-            if (!err) {
-                console.log('created database for eventy stuff');
-            } else {
-                console.log(err);
-            }
-        });
-    }
-})
+function checkdb(db) {
+    cloudant.db.get(db, function(err, body) {
+        if (!err) {
+            console.log(body);
+        } else {
+            cloudant.db.create(db, function(err, body) {
+                if (!err) {
+                    console.log('created database for ' + db);
+                } else {
+                    console.log(err);
+                }
+            });
+        }
+    });
+}
 
-cloudant.db.get('config', function(err, body) {
-    if (!err) {
-        console.log(body);
+// middleware to check if user is logged in
+function requireLogin(req, res, next) {
+    if (req.session.loggedIn) {
+        next();
     } else {
-        cloudant.db.create('config', function(err, body) {
-            if (!err) {
-                console.log('created database for config stuff');
-            } else {
-                console.log(err);
-            }
-        });
+        res.redirect("/login");
     }
-})
+}
+
+// require login for admin and registrations routes
+app.all("/admin.html", requireLogin, function(req, res, next) {
+    next();
+});
+app.all("/registrations.html", requireLogin, function(req, res, next) {
+    next();
+});
 
 // set database variables
 var registrations = cloudant.use('registrations');
@@ -85,6 +98,25 @@ app.get('/admin', function(req, res) {
 app.get('/registrations', function(req, res) {
     res.redirect('/registrations.html');
 })
+
+// forward to login page
+app.get('/login', function(req, res) {
+    res.redirect('login.html');
+})
+
+// login endpoint
+app.post('/login', function(req, res) {
+    if (!req.body.user) {
+        res.send('Invalid user');
+    } else {
+        if (req.body.password === admin_password) {
+            req.session.loggedIn = true;
+            res.send('success');
+        } else {
+            res.send('Invalid password.');
+        }
+    }
+});
 
 // post config details (title, colors, description of site etc..)
 app.post('/api/config', function(req, res) {

@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Event Registration</title>
+    <meta name="description" content="Description">
+    <meta name="author" content="Ed Shee">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <div id="app" :style="[backgroundColor4, fontColor3]">
+        <div class="filler">
+            <header>
+                <div class="title" :style="[backgroundColor2, fontColor3]">
+                    <div class="container">
+                        {{config.title}}
+                    </div>
+                </div>
+                <div class="description" :style="[backgroundColor1, fontColor4]">
+                    <div class="container">
+                        {{config.description}}
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div class="login-padding">
+                    <div class="row">
+                        <transition name="fade">
+                            <div>
+                                <div class="col-xs-12 card">
+                                    <div class="card-block card-block-margin" :style="[backgroundColor3, fontColor4]">
+                                        <div class="block-padding">
+                                            <p class="card-title">Please log in to access admin page</p>
+                                            <p class="card-text" v-show="showError">Error incorrect password. <span :style="fontColor2">Please try again.</span></p>
+                                            <p class="card-text"><span :style="fontColor2">Password</span>
+                                                <input v-on:keyup.enter="login" type="password" class="form-control" v-model="password" :style="[backgroundColor4, fontColor3, borderColor2]">
+                                            </p>
+                                        </div>
+                                        <a href="/admin" v-on:click="login($event)" class="btn btn-primary register-button" :style="[backgroundColor2, fontColor3, borderColor3]">Login</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="description" :style="[backgroundColor1, fontColor4]">
+                <div class="container text-center footer-text">
+                    <p>Made by the IBM Cloud team</p>
+                    <p>Powered by
+                        <a href="https://bluemix.net" :style="fontColor2">IBM Cloud</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="scripts/jquery-3.1.1.min.js "></script>
+    <script src="scripts/vue.js "></script>
+    <script src="scripts/vue-resource.js"></script>
+    <script src="scripts/bootstrap.min.js "></script>
+    <script src="scripts/login.js "></script>
+</body>
+
+</html>
