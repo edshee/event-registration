@@ -2,7 +2,7 @@
 
 A [Node.js](https://nodejs.org/en/) app to help you publish events and manage registrations for those events. Built using [Vue.js](https://vuejs.org/).
 
-[Live Demo](https://event-registration-uncleansable-bloke.eu-gb.mybluemix.net/)
+[Live Demo](https://event-registration.eu-gb.mybluemix.net/)
 
 ## Set Up
 
