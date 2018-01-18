@@ -41,15 +41,11 @@ var app = new Vue({
         },
         getEvent: function(id) {
             this.$http.get('/api/event/' + id).then(response => {
+                response.data.instances.forEach(function(i) {
+                    i.date = moment(i.date).format('Do MMMM YYYY');
+                })
                 this.events.push(response.data)
                 this.registerToggle.push(false)
-            }, response => {
-                console.log(response);
-            })
-        },
-        getInstance: function(id, cb) {
-            this.$http.get('/api/instance/' + id).then(response => {
-                //put the instance in the right place
             }, response => {
                 console.log(response);
             })
