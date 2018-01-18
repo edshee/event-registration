@@ -27,7 +27,7 @@ Wait for your application to deploy then:
 
 If you ignore step 5 the default admin password is **events**
 
-## Supported Regions
+### Supported Regions
 
 - US South
 - United Kingdom
@@ -35,9 +35,9 @@ If you ignore step 5 the default admin password is **events**
 - Australia
 - China
 
-## Email Notifications
+### Email Notifications
 
-If you want to set up the (optional) email notification you will need a [SendGrid](https://sendgrid.com/) account.
+Coming soon...
 
 ## Usage
 
