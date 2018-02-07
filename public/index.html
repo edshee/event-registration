@@ -29,6 +29,11 @@
                 </div>
             </header>
             <div class="container">
+                <div class="event-title text-center" :style="fontColor3" v-if="!dbConnected">
+                    unable to connect to database
+                </div>
+            </div>
+            <div class="container">
                 <div class="row" v-for="(event, index) in events">
                     <div class="container">
                         <div class="event-title" :style="fontColor3">

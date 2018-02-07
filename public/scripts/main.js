@@ -18,7 +18,8 @@ var app = new Vue({
             email: '',
             phone: ''
         },
-        disableRegister: false
+        disableRegister: false,
+        dbConnected: true
     },
     methods: {
         getConfigDetails: function() {
@@ -32,6 +33,9 @@ var app = new Vue({
         },
         loadEventsAndInstances: function() {
             this.$http.get('/api/events/all').then(response => {
+                if (response.data == "No Database Connected") {
+                    app.dbConnected = false;
+                }
                 response.data.forEach(function(el) {
                     app.getEvent(el.id)
                 })

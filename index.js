@@ -23,7 +23,7 @@ if (process.env.admin_password) {
 };
 
 // manually add cloudant url here if not binding as a service
-var cloudant_url = "https://f327407a-196d-4d19-84b3-72c1a3ce91bd-bluemix:36a8b4a546b6bef9fe3970c3f93905ed38718c2f74d893e18f23435fd88b9bde@f327407a-196d-4d19-84b3-72c1a3ce91bd-bluemix.cloudant.com";
+var cloudant_url = "";
 
 // get cloudant env variables
 if (process.env.VCAP_SERVICES) {
@@ -33,15 +33,21 @@ if (process.env.VCAP_SERVICES) {
         cloudant_url = services.cloudantNoSQLDB[0].credentials.url;
     }
 }
+if (!cloudant_url == "") {
+    var cloudant = Cloudant({
+        url: cloudant_url
+    });
 
-var cloudant = Cloudant({
-    url: cloudant_url
-});
+    // check if config, registrations and events databases exist and create if not
+    checkdb('events');
+    checkdb('registrations');
+    checkdb('config');
 
-// check if config, registrations and events databases exist and create if not
-checkdb('events');
-checkdb('registrations');
-checkdb('config');
+    // set database variables
+    var registrations = cloudant.use('registrations');
+    var events = cloudant.use('events');
+    var config = cloudant.use('config');
+}
 
 function checkdb(db) {
     cloudant.db.get(db, function(err, body) {
@@ -75,11 +81,6 @@ app.all("/admin.html", requireLogin, function(req, res, next) {
 app.all("/registrations.html", requireLogin, function(req, res, next) {
     next();
 });
-
-// set database variables
-var registrations = cloudant.use('registrations');
-var events = cloudant.use('events');
-var config = cloudant.use('config');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -183,15 +184,19 @@ app.get('/api/event/:id', function(req, res) {
 
 // get all events
 app.get('/api/events/all', function(req, res) {
-    events.list(function(err, body) {
-        var arr = [];
-        if (!err) {
-            body.rows.forEach(function(doc) {
-                arr.push(doc);
-            });
-            res.send(arr);
-        }
-    });
+    if (events) {
+        events.list(function(err, body) {
+            var arr = [];
+            if (!err) {
+                body.rows.forEach(function(doc) {
+                    arr.push(doc);
+                });
+                res.send(arr);
+            }
+        });
+    } else {
+        res.send("No Database Connected");
+    }
 })
 
 // registration creation endpoint
