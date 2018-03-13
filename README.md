@@ -1,4 +1,5 @@
 # Event Registration
+[![Known Vulnerabilities](https://snyk.io/test/github/edshee/event-registration/badge.svg?targetFile=package.json)](https://snyk.io/test/github/edshee/event-registration?targetFile=package.json)
 
 A [Node.js](https://nodejs.org/en/) app to help you publish events and manage registrations for those events. Built using [Vue.js](https://vuejs.org/).
 
