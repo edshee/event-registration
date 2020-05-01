@@ -1,37 +1,41 @@
 {
-    "name": "event-registration",
-    "version": "1.0.0",
-    "description": "Simple event registration page. Handy for ad-hoc tech events.",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/edshee/event-registration.git"
-    },
-    "keywords": [
-        "events",
-        "event",
-        "registration",
-        "lab",
-        "proof",
-        "of",
-        "technology"
-    ],
-    "author": "Ed Shee",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/edshee/event-registration/issues"
-    },
-    "homepage": "https://github.com/edshee/event-registration#readme",
-    "dependencies": {
-        "body-parser": "^1.18.2",
-        "cfenv": "^1.0.4",
-        "client-sessions": "^0.8.0",
-        "cloudant": "^1.10.0",
-        "express": "^4.16.2",
-        "vue-color": "^2.4.3"
-    }
+  "name": "event-registration",
+  "version": "1.0.0",
+  "description": "Simple event registration page. Handy for ad-hoc tech events.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edshee/event-registration.git"
+  },
+  "keywords": [
+    "events",
+    "event",
+    "registration",
+    "lab",
+    "proof",
+    "of",
+    "technology"
+  ],
+  "author": "Ed Shee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edshee/event-registration/issues"
+  },
+  "homepage": "https://github.com/edshee/event-registration#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cfenv": "^1.0.4",
+    "client-sessions": "^0.8.0",
+    "cloudant": "^1.10.0",
+    "express": "^4.16.2",
+    "vue-color": "^2.4.3",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
